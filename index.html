@@ -11,9 +11,42 @@
 	<div id="container"></div>
 	
 	<script type="text/babel">
+		var CrazyData = React.createClass({
+			componentDidMount: function() {
+				console.log('------> COMPONENT DID MOUNT!');
+				
+			},
+			componentWillMount: function() {
+				console.log('------> COMPONENT WILL MOUNT!');
+			},
+			getInitialState: function () {
+				console.log('------> GET INITIAL STATE');
+
+				return {
+					namePH: 'Introduce tu nombre',
+					saludo1: 'Ola ',
+					saludo2: ' k ase!',
+					nameValue: ''
+				};
+			},
+			changeName: function(name){
+				this.setState({nameValue: name.target.value});
+				//this.setState(name);
+			},
+			render: function(){
+				console.log('------> RENDER!');
+				return (
+					<div>
+						<h3>Introduce tus datos</h3>
+						<input type="text" placeholder={this.state.namePH} onChange={this.changeName}/>
+						<p><span>{this.state.saludo1}</span><span>{this.state.nameValue}</span><span>{this.state.saludo2}</span></p>
+					</div>
+				)
+			}
+		});
 
 		ReactDOM.render(
-			<h1>Hola mundo</h1>,
+			<CrazyData heading="Introduce los datos"/>,
 			document.getElementById('saludo')
 		);
 
